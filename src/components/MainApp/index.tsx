@@ -209,7 +209,6 @@ export default function MainApp() {
             <tbody>
             {user.clockIn.map((e, index) => {
               let timeWorked = 0
-              const formattedDate = e.date.replaceAll('-', '/')
               const inputDate = e.date.split('-').reverse().join('-')
 
               if (e.timeIn.length > e.timeOut.length) {
@@ -232,7 +231,7 @@ export default function MainApp() {
                   <td id="tableDate">{editingIndex === index ? (
                     <input type="date" name={`date${index}`} id={`date${index}`} value={dateInput ? dateInput : inputDate} onChange={handleDateInputChange} />
                   ) : (
-                    formattedDate
+                    <input type="date" name={`date${index}`} id={`date${index}`} value={inputDate} disabled/>
                   )}
                   </td>
 
@@ -241,18 +240,13 @@ export default function MainApp() {
                     {editingIndex === index ? (
                       e.timeIn.map((e, index) => {
                         return (
-                          <>
                           <input key={index} type="time" name={`timeIn${index}`} id={`timeIn${index}`} value={timeInInput[index] ? timeInInput[index] : e} onChange={(event) => {handleTimeInInputChange(event, index)}} />
-                          <br />
-                          </>
                         )
                       })
                     ) : (
                       e.timeIn.map((e, index) => {
                         return (
-                          <span key={index}>
-                            {e}<br/>
-                          </span>
+                          <input type="time" name={`timeIn${index}`} id={`timeIn${index}`} value={e} disabled />
                         )
                       })   
                     )}
@@ -264,18 +258,13 @@ export default function MainApp() {
                     {editingIndex === index ? (
                       e.timeOut.map((e, index) => {
                         return (
-                          <>
                           <input key={index} type="time" name={`timeOut${index}`} id={`timeOut${index}`} value={timeOutInput[index] ? timeOutInput[index] : e} onChange={(event) => {handleTimeOutInputChange(event, index)}} />
-                          <br />
-                          </>
                         )
                       })
                     ) : (
                       e.timeOut.map((e, index) => {
                         return (
-                          <span key={index}>
-                            {e}<br/>
-                          </span>
+                          <input key={index} type="time" name={`timeOut${index}`} id={`timeOut${index}`} value={e} disabled/>
                         )
                       })
                     )}

@@ -63,14 +63,6 @@
   td {
     padding: 2rem;
 
-    &:first-child {
-
-
-      input {
-        margin-right: -1000px;
-      }
-    }
-
     &:nth-child(4) {
       text-align: center;
     }
@@ -81,14 +73,19 @@
       }
     }
 
+    input {
+      display: block;
+    }
+
+    input:disabled {
+      background-color: var(--gray-900);
+      color: white;
+      border: 2px solid var(--gray-900);
+    }
+
     div {
       max-height: 3rem;
       overflow-y: scroll;
-
-      span {
-        display: block;
-        padding: .25rem;
-      }
     }
   }
 
