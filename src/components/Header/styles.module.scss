@@ -1,0 +1,108 @@
+.header {
+  padding: 3rem 5rem;
+  background-color: var(--blue-900);
+  box-shadow: .25rem .25rem .5rem rgba(0, 0, 0, .5);
+
+  &>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+
+    padding: 1rem;
+
+    &>p {
+      margin-right: .5rem;
+    }
+
+    .profileMenu {
+      visibility: hidden;
+      position: absolute;
+      z-index: 1;
+      top: 100%;
+      right: .25rem;
+
+      background-color: transparent;
+      transform-origin: top center;
+      transform: scaleY(0);
+      transition: all .25s ease-in-out;
+
+      &>a {
+        display: block;
+        background-color: var(--gray-100);
+        color: var(--blue-900);
+        white-space: nowrap;
+        padding: .5rem 1rem;
+
+        border-bottom: 1px solid var(--gray-200);
+
+        &:hover {
+          background-color: var(--gray-200);
+        }
+
+        &:last-child {
+          border-radius: 0 0 .25rem .25rem;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+.menuActive {
+  visibility: visible !important;
+  transform: scaleY(1) !important;
+}
+
+.popup {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: var(--blue-900);
+  padding: 3rem 5rem;
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+
+  button {
+    display: block;
+    border: none;
+    background: var(--gray-100);
+    color: var(--blue-900);
+
+    padding: 1rem;
+    border-radius: 0.25rem;
+
+    &:hover {
+      background: var(--blue-100);
+      color: var(--gray-100);
+    }
+
+    &:first-child {
+      font-weight: bold;
+      background: var(--red-500);
+      color: var(--gray-100);
+
+      &:hover {
+        background: var(--gray-100);
+        color: var(--red-500)
+      }
+    }
+  }
+}
+
+.active {
+  display: block !important;
+}
