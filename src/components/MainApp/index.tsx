@@ -43,7 +43,7 @@ export default function MainApp() {
   
   function handleAddTimeInInputChange(event: ChangeEvent<HTMLInputElement>, index: number) {
     event.preventDefault()
-
+    if (!/^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(event.target.value)) return
     if (addTimeOutInput[index] && transformToSeconds(event.target.value) > transformToSeconds(addTimeOutInput[index])) return
 
     let newTimeInput = addTimeInInput
@@ -54,7 +54,7 @@ export default function MainApp() {
 
   function handleAddTimeOutInputChange(event: ChangeEvent<HTMLInputElement>, index: number) {
     event.preventDefault()
-
+    if (!/^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(event.target.value)) return
     if (addTimeInInput[index] && transformToSeconds(event.target.value) < transformToSeconds(addTimeInInput[index])) return
 
     let newTimeInput = addTimeOutInput
@@ -321,14 +321,18 @@ export default function MainApp() {
 
   function handleTimeInInputChange(event: ChangeEvent<HTMLInputElement>, index: number) {
     event.preventDefault()
-    let newTimeInput = timeInInput
+    if (!/^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(event.target.value)) return
+
+    const newTimeInput = [...timeInInput]
     newTimeInput[index] = event.target.value
     setTimeInInput(newTimeInput)
   }
 
   function handleTimeOutInputChange(event: ChangeEvent<HTMLInputElement>, index: number) {
     event.preventDefault()
-    let newTimeInput = timeOutInput
+    if (!/^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(event.target.value)) return
+
+    const newTimeInput = [...timeOutInput]
     newTimeInput[index] = event.target.value
     setTimeOutInput(newTimeInput)
   }
