@@ -532,14 +532,14 @@ export default function MainApp() {
                     {editingIndex === index ? (
                       e.timeIn.map((e, index) => {
                         return (
-                          <input key={index} type="time" name={`timeIn${index}`} id={`timeIn${index}`} value={timeInInput[index] ? timeInInput[index] : e} onChange={(event) => {handleTimeInInputChange(event, index)}} />
+                          <input key={index} type="time" name={`timeIn${index}`} id={`timeIn${index}`} value={timeInInput[index] ? timeInInput[index] : e} step={1} onChange={(event) => {handleTimeInInputChange(event, index)}} />
                         )
                       })
                     ) : (
                       e.timeIn.map((e, index) => {
                         return (
                           <div key={index}>
-                            <input aria-hidden type="time" name={`timeIn${index}`} id={`timeIn${index}`} value={e} disabled />
+                            <input aria-hidden type="time" name={`timeIn${index}`} id={`timeIn${index}`} value={e} step={1} disabled />
                             <time dateTime={e}></time>
                           </div>
                         )
@@ -553,14 +553,14 @@ export default function MainApp() {
                     {editingIndex === index ? (
                       e.timeOut.map((e, index) => {
                         return (
-                          <input key={index} type="time" name={`timeOut${index}`} id={`timeOut${index}`} value={timeOutInput[index] ? timeOutInput[index] : e} onChange={(event) => {handleTimeOutInputChange(event, index)}} />
+                          <input key={index} type="time" name={`timeOut${index}`} id={`timeOut${index}`} value={timeOutInput[index] ? timeOutInput[index] : e} step={1} onChange={(event) => {handleTimeOutInputChange(event, index)}} />
                         )
                       })
                     ) : (
                       e.timeOut.map((e, index) => {
                         return (
                           <div key={index}>
-                            <input aria-hidden type="time" name={`timeOut${index}`} id={`timeOut${index}`} value={e} disabled/>
+                            <input aria-hidden type="time" name={`timeOut${index}`} id={`timeOut${index}`} value={e} step={1} disabled/>
                             <time dateTime={e}></time>
                           </div>
                         )
