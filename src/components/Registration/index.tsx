@@ -1,31 +1,18 @@
-import { ChangeEvent, FormEvent, useContext, useState, useRef, useEffect } from "react"
-import { GrFormClose } from "react-icons/gr"
+import { ChangeEvent, FormEvent, useContext, useState } from "react"
+import { ModalContext } from "../../contexts/ModalContext"
 import { emptyUser, UserContext } from "../../contexts/UserContext"
+import { handleImport } from "../Header"
 
 import styles from './styles.module.scss'
 
 export default function Registration() {
-  const { error, setError, errorMessage, isAuthenticated, setUser, user } = useContext(UserContext)
+  const { isAuthenticated, setUser, user } = useContext(UserContext)
+  const { openModal } = useContext(ModalContext)
+
   const [form, setForm] = useState({
     userName: '',
     workHours: '',
   })
-
-  const popup = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!error) return
-
-    function handleClick(event: MouseEvent) {
-      if (popup.current && !popup.current.contains(event.target as Node)) {
-        setError(false)
-      }
-    }
-
-    window.addEventListener("click", handleClick)
-
-    return () => window.removeEventListener("click", handleClick)
-  }, [error])
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setForm({
@@ -46,10 +33,6 @@ export default function Registration() {
     setUser(userData)
   }
 
-  function handlePopup() {
-    setError(false)
-  }
-
   return (
     <>
     <div className={styles.registration}>
@@ -60,7 +43,7 @@ export default function Registration() {
         </div>
         
         <div className={styles.input}>
-          <label htmlFor="workHours">Tempo de trabalho por semana</label><br/>
+          <label htmlFor="workHours">Horas trabalhadas por semana</label><br/>
           <input required type="number" name="workHours" id="workHours" value={form.workHours} list="commonWorkHours" min={0} max={168} onChange={handleChange} />
           <datalist id="commonWorkHours">
             <option value="40" />
@@ -73,11 +56,12 @@ export default function Registration() {
 
         <button type="submit">Cadastrar</button>
       </form>
-    </div>
 
-    <div ref={popup} className={`${styles.popup} ${error ? styles.active : ''}`}>
-      <button onClick={handlePopup}><GrFormClose /></button>
-      {errorMessage}
+      <p>ou</p>
+
+      <div className={styles.sideButtons}>
+        <button onClick={() => {handleImport({setUser, openModal})}}>Importar dados</button>
+      </div>
     </div>
     </>
   )
